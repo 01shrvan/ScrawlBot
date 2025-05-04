@@ -39,6 +39,38 @@ const ButtonHandler = (props: Props) => {
         )
     }
 
+    if (currentStep === 2) {
+        return (
+            <div className="w-full flex flex-col gap-3 items-center">
+                <Button
+                    type="submit"
+                    className="w-full"
+                    {...(isName &&
+                        isEmail &&
+                        isPassword && {
+                        onClick: () =>
+                            onGenerateOTP(
+                                getValues('email'),
+                                getValues('password'),
+                                setCurrentStep
+                            ),
+                    })}
+                >
+                    Continue
+                </Button>
+                <p>
+                    Already have an account?{' '}
+                    <Link
+                        href="/auth/sign-in"
+                        className="font-bold"
+                    >
+                        Sign In
+                    </Link>
+                </p>
+            </div>
+        )
+    }
+
     return (
         <div className="w-full flex flex-col gap-3 items-center">
             <Button
